@@ -1,0 +1,21 @@
+{
+  "name": "webassembly-ffmpeg-image-compressor",
+  "version": "1.0.0",
+  "description": "WebAssembly FFmpeg Image Compressor is a web-based tool that allows you to compress images directly in the browser using FFmpeg.wasm—a WebAssembly version of FFmpeg.",
+  "keywords": [
+    "WebAssembly",
+    "wasm",
+    "FFmpeg",
+    "Image",
+    "web-based",
+    "javascript",
+    "client-side"
+  ],
+  "author": "Davis Chang",
+  "script": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

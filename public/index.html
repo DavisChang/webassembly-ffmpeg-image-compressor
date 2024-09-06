@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FFmpeg.wasm Image Compression</title>
+    <style>
+        img {
+            max-width: 300px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Compression with FFmpeg.wasm</h1>
+
+    <!-- File input to select the image -->
+    <input type="file" id="input-file">
+    <button onclick="compressImage()">Compress Image</button>
+
+    <!-- Display the original and compressed images -->
+    <div>
+        <h2>Original Image</h2>
+        <img id="original-image" src="" alt="Original Image">
+        <p id="original-size"></p>
+    </div>
+    
+    <div>
+        <h2>Compressed Image</h2>
+        <img id="compressed-image" src="" alt="Compressed Image">
+        <p id="compressed-size"></p>
+        <button id="download-button" style="display: none;">Download Compressed Image</button>
+    </div>
+
+    <!-- Include FFmpeg.wasm via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.10.0/dist/ffmpeg.min.js"></script>
+    <script>
+        const { createFFmpeg, fetchFile } = FFmpeg;
+        const ffmpeg = createFFmpeg({ log: true });
+
+        async function compressImage() {
+            const inputFile = document.getElementById('input-file').files[0];
+            if (!inputFile) {
+                alert("Please select an image file.");
+                return;
+            }
+
+            // Display the original image and its size
+            const originalImageURL = URL.createObjectURL(inputFile);
+            document.getElementById('original-image').src = originalImageURL;
+            document.getElementById('original-size').textContent = `Original Size: ${(inputFile.size / 1024).toFixed(2)} KB`;
+
+            // Load FFmpeg.wasm
+            if (!ffmpeg.isLoaded()) {
+                await ffmpeg.load();
+            }
+
+            // Write the image to FFmpeg's virtual filesystem
+            await ffmpeg.FS('writeFile', 'input.png', await fetchFile(inputFile));
+
+            // Compress the image, reducing image dimensions by 10%:
+            await ffmpeg.run('-i', 'input.png', '-vf', 'scale=iw*0.9:ih*0.9', 'output.jpg');
+
+            // Read the compressed image
+            const data = ffmpeg.FS('readFile', 'output.jpg');
+
+            // Create a Blob for the compressed image and display it
+            const compressedBlob = new Blob([data.buffer], { type: 'image/jpeg' });
+            const compressedImageURL = URL.createObjectURL(compressedBlob);
+            document.getElementById('compressed-image').src = compressedImageURL;
+
+            // Display compressed image size
+            const compressedSize = data.buffer.byteLength;
+            document.getElementById('compressed-size').textContent = `Compressed Size: ${(compressedSize / 1024).toFixed(2)} KB`;
+
+            // Show the download button and set the download functionality
+            const downloadButton = document.getElementById('download-button');
+            downloadButton.style.display = 'inline-block';
+            downloadButton.onclick = function () {
+                const a = document.createElement('a');
+                a.href = compressedImageURL;
+                a.download = 'compressed-image.jpg';
+                a.click();
+            };
+        }
+    </script>
+</body>
+</html>
