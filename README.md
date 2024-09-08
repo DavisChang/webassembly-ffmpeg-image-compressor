@@ -3,7 +3,18 @@
 WebAssembly FFmpeg Image Compressor is a web-based tool that allows you to compress images directly in the browser using FFmpeg.wasm—a WebAssembly version of FFmpeg. You can use this project to compress images without needing to install or run FFmpeg on your local machine, making it suitable for client-side image processing.
 
 
-Compile your first Emscripten examples from the command line. Folder webAssembly.
+## WebAssembly and Emscripten
+There will be examples on how to compile your first Emscripten examples from the command line, as well as how to use WebAssembly with Vite + React. Please check the [webAssembly folder](https://github.com/DavisChang/webassembly-ffmpeg-image-compressor/tree/main/webAssembly).
+
+
+Here are some well-known projects that use WebAssembly (Wasm) to boost performance
+
+- Figma: Figma is a popular design tool that leverages WebAssembly to bring native-like performance to the browser, allowing complex vector graphics and real-time collaboration.
+- Autodesk: This well-known design and engineering software company uses WebAssembly to enable CAD software to run in the browser without needing native installation.
+- WordPress: The Gutenberg editor in WordPress utilizes WebAssembly to optimize performance for some features like the image manipulation libraries.
+- Google Earth: The web version of Google Earth uses WebAssembly to provide smooth and responsive user experiences directly in the browser.
+- TensorFlow.js: The machine learning library TensorFlow.js uses WebAssembly for faster in-browser model inference, especially for devices without GPU acceleration.
+
 
 ## Features
 - Client-side compression: Compress images in the browser using WebAssembly without server-side processing.
