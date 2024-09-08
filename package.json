@@ -9,7 +9,10 @@
     "Image",
     "web-based",
     "javascript",
-    "client-side"
+    "client-side",
+    "Compile",
+    "C/C++",
+    "Emscripten"
   ],
   "author": "Davis Chang",
   "script": {

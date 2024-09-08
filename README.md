@@ -1,6 +1,9 @@
-# WebAssembly FFmpeg Image Compressor
+# WebAssembly FFmpeg Image Compressor + Compile Emscripten from the command line
 
 WebAssembly FFmpeg Image Compressor is a web-based tool that allows you to compress images directly in the browser using FFmpeg.wasm—a WebAssembly version of FFmpeg. You can use this project to compress images without needing to install or run FFmpeg on your local machine, making it suitable for client-side image processing.
+
+
+Compile your first Emscripten examples from the command line. Folder webAssembly.
 
 ## Features
 - Client-side compression: Compress images in the browser using WebAssembly without server-side processing.
