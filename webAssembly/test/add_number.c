@@ -9,8 +9,7 @@
 #include <emscripten.h>
 
 EMSCRIPTEN_KEEPALIVE
-int main()
+int addNumber(int a, int b)
 {
-  printf("hello, world!\n");
-  return 0;
+  return a + b;
 }

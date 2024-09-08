@@ -12,7 +12,10 @@
     "client-side",
     "Compile",
     "C/C++",
-    "Emscripten"
+    "Emscripten",
+    "vite",
+    "typescript",
+    "react"
   ],
   "author": "Davis Chang",
   "script": {
